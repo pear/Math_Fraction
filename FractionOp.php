@@ -18,14 +18,13 @@
 //
 // $Id$
 
-include_once 'PEAR.php';
 include_once 'Math/Fraction.php';
 
 /**
  * Math_FractionOp: static class to operate on Math_Fraction objects
  *
  * @author  Kouber Saparev <kouber@php.net>
- * @version 0.3.0
+ * @version 0.4.0
  * @access  public
  * @package Math_Fraction
  */
@@ -64,7 +63,7 @@ class Math_FractionOp {
     {
         if (!Math_FractionOp::isFraction($n1) 
             || !Math_FractionOp::isFraction($n2)) {
-            return PEAR::raiseError('Both arguments must be PEAR::Math_Fraction objects');
+            return Math_FractionOp::raiseError('Both arguments must be PEAR::Math_Fraction objects');
         } else {
             $num1 = $n1->getNum();
             $den1 = $n1->getDen();
@@ -98,7 +97,7 @@ class Math_FractionOp {
     {
         if (!Math_FractionOp::isFraction($n1) 
             || !Math_FractionOp::isFraction($n2)) {
-            return PEAR::raiseError('Both arguments must be PEAR::Math_Fraction objects');
+            return Math_FractionOp::raiseError('Both arguments must be PEAR::Math_Fraction objects');
         } else {
             $den1 = $n1->getDen();
             $den2 = $n2->getDen();
@@ -126,7 +125,7 @@ class Math_FractionOp {
     {
         if (!Math_FractionOp::isFraction($n1) 
             || !Math_FractionOp::isFraction($n2)) {
-            return PEAR::raiseError('Both arguments must be PEAR::Math_Fraction objects');
+            return Math_FractionOp::raiseError('Both arguments must be PEAR::Math_Fraction objects');
         } else {
             return Math_FractionOp::add($n1, new Math_Fraction($n2->getNum()*-1, $n2->getDen()), $return_simplified);
         }
@@ -145,7 +144,7 @@ class Math_FractionOp {
     {
         if (!Math_FractionOp::isFraction($n1) 
             || !Math_FractionOp::isFraction($n2)) {
-            return PEAR::raiseError('Both arguments must be PEAR::Math_Fraction objects');
+            return Math_FractionOp::raiseError('Both arguments must be PEAR::Math_Fraction objects');
         } else {
             $num = $n1->getNum() * $n2->getNum();
             $den = $n1->getDen() * $n2->getDen();
@@ -171,7 +170,7 @@ class Math_FractionOp {
     {
         if (!Math_FractionOp::isFraction($n1) 
             || !Math_FractionOp::isFraction($n2)) {
-            return PEAR::raiseError('Both arguments must be PEAR::Math_Fraction objects');
+            return Math_FractionOp::raiseError('Both arguments must be PEAR::Math_Fraction objects');
         } else {
             return Math_FractionOp::mult($n1, Math_FractionOp::reciprocal($n2), $return_simplified);
         }
@@ -240,7 +239,7 @@ class Math_FractionOp {
     function reciprocal($n) 
     {
         if (!Math_FractionOp::isFraction($n)) {
-            return PEAR::raiseError('Argument must be PEAR::Math_Fraction object');
+            return Math_FractionOp::raiseError('Argument must be PEAR::Math_Fraction object');
         } else {
             $num = $n->getNum();
             $den = $n->getDen();
@@ -259,7 +258,7 @@ class Math_FractionOp {
     function &simplify(&$n)
     {
         if (!Math_FractionOp::isFraction($n)) {
-            return PEAR::raiseError('Argument must be PEAR::Math_Fraction object');
+            return Math_FractionOp::raiseError('Argument must be PEAR::Math_Fraction object');
         } else {
             $num = $n->getNum();
             $den = $n->getDen();
@@ -327,6 +326,44 @@ class Math_FractionOp {
         $den = pow(10, $len);
 
         return new Math_Fraction($num, $den);
+    }
+
+    /**
+     * Converts string to fraction.
+     *
+     * @static
+     * @param string $str
+     * @return object Math_Fraction
+     * @access public
+     */
+    function stringToFraction($str)
+    {
+        if (preg_match('#^(\d+)/(\d+)$#', $str, $m)) {
+            $num =& $m[1];
+            $den =& $m[2];
+
+            if (!$den) {
+                return Math_FractionOp::raiseError('Denominator must not be zero.');
+            } else {
+                return new Math_Fraction($num, $den);
+            }
+        } else {
+            return Math_FractionOp::raiseError('Invalid fraction.');
+        }
+    }
+
+    /**
+     * An error capturing function.
+     *
+     * @static
+     * @param string $str
+     * @return object PEAR::raiseError()
+     * @access public
+     */
+    function raiseError($str)
+    {
+        include_once 'PEAR.php';
+        return PEAR::raiseError($str);
     }
 }
 ?>

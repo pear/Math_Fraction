@@ -13,10 +13,14 @@ $b = new Math_Fraction(3, 8);
 // creating fraction from float
 $c = new Math_Fraction(3.14159265358979323846);
 
+// creating fraction from string
+$d = new Math_Fraction('36/55');
+
 echo "a = ".$a->toString()."\n";
 echo "b = ".$b->toString()."\n";
 
 echo "c = ".$c->toString()."\n";
+echo "d = ".$d->toString()."\n";
 
 $n = Math_FractionOp::compare($a, $b);
 echo "compare(a, b) = ".$n."\n";

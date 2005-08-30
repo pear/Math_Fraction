@@ -18,14 +18,12 @@
 //
 // $Id$
 
-include_once 'PEAR.php';
-
 /**
  * Math_Fraction: class to represent and manipulate fractions (n = a/b)
  *
  *
  * @author  Kouber Saparev <kouber@php.net>
- * @version 0.3.0
+ * @version 0.4.0
  * @access  public
  * @package Math_Fraction
  */
@@ -68,19 +66,34 @@ class Math_Fraction {
             // classical construction with numerator and denominator
             // signature = (int, int)
             if (is_null($den)) {
-                // invalid signature = (int)
-                return PEAR::raiseError('Denominator missing.');
+                // just one parameter is passed to the constructor
+
+                if (is_int($num)) {
+                    // invalid signature = (int)
+                    return Math_FractionOp::raiseError('Denominator missing.');
+                } else {
+                    // try to create a fraction from string
+                    // signature = (string)
+                    $fr =& Math_FractionOp::stringToFraction($num);
+
+                    if (!Math_FractionOp::isFraction($fr)) {
+                        return $fr;
+                    }
+
+                    $this->_num =& $fr->getNum();
+                    $this->_den =& $fr->getDen();
+                }
             }
 
             $num = intval($num);
             $den = intval($den);
 
             if (!$den) {
-                return PEAR::raiseError('Denominator must not be zero.');
+                return Math_FractionOp::raiseError('Denominator must not be zero.');
             }
 
-            $this->_num = intval($num);
-            $this->_den = intval($den);
+            $this->_num = $num;
+            $this->_den = $den;
         }
     }
     
