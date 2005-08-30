@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
 <package version="1.0">
   <name>Math_Fraction</name>
   <summary>Classes that represent and manipulate fractions.</summary>
@@ -19,17 +20,37 @@ The Math_FractionOp static class contains definitions for:
     </maintainer>
   </maintainers>
   <release>
-    <version>0.3.0</version>
-    <date>2004-12-23</date>
+    <version>0.4.0</version>
+    <date>2005-08-30</date>
     <license>PHP</license>
-    <state>alpha</state>
-    <notes>Initial release under PEAR.</notes>
-    <deps>
-    </deps>
+    <state>beta</state>
+      <notes>
+        - Fractions now can be created with just a string (Bug #3053).
+        - Improved error handling performance.
+      </notes>
     <filelist>
       <file role="php" baseinstalldir="Math" name="Fraction.php"/>
       <file role="php" baseinstalldir="Math" name="FractionOp.php"/>
       <file role="doc" baseinstalldir="Math" name="docs/examples/using_fractionop.php"/>
     </filelist>
   </release>
+  <changelog>
+    <release>
+      <version>0.4.0</version>
+      <date>2005-08-30</date>
+      <license>PHP</license>
+      <state>beta</state>
+      <notes>
+        - Fractions now can be created with just a string (Bug #3053).
+        - Improved error handling performance.
+      </notes>
+    </release>
+    <release>
+      <version>0.3.0</version>
+      <date>2004-12-23</date>
+      <license>PHP</license>
+      <state>alpha</state>
+      <notes>Initial release under PEAR.</notes>
+    </release>
+  </changelog>
 </package>
