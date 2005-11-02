@@ -113,7 +113,7 @@ class Math_FractionOp {
     }
 
     /**
-     * Returns the substraction of two fractions: n = n1 - n2
+     * Returns the subtraction of two fractions: n = n1 - n2
      *
      * @static
      * @param object $n1 Math_Fraction
