@@ -338,9 +338,14 @@ class Math_FractionOp {
      */
     function stringToFraction($str)
     {
-        if (preg_match('#^(\d+)/(\d+)$#', $str, $m)) {
-            $num =& $m[1];
-            $den =& $m[2];
+        if (preg_match('#^(-)? *?(\d+) *?/ *?(-)? *?(\d+)$#', trim($str), $m)) {
+            $num =& $m[2];
+            $den =& $m[4];
+
+            if ($m[1] xor $m[3]) {
+                // there is one "-" sign => the fraction is negative
+                $num *= -1;
+            }
 
             if (!$den) {
                 return Math_FractionOp::raiseError('Denominator must not be zero.');

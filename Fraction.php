@@ -92,6 +92,12 @@ class Math_Fraction {
                 return Math_FractionOp::raiseError('Denominator must not be zero.');
             }
 
+            if ($den < 0) {
+                // denominator is negative => set the sign of the entire fraction
+                $num *= -1;
+                $den *= -1;
+            }
+
             $this->_num = $num;
             $this->_den = $den;
         }
