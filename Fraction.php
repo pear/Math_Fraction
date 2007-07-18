@@ -23,7 +23,7 @@
  *
  *
  * @author  Kouber Saparev <kouber@php.net>
- * @version 0.4.0
+ * @version 0.4.1
  * @access  public
  * @package Math_Fraction
  */
