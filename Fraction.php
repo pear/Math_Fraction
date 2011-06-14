@@ -69,8 +69,8 @@ class Math_Fraction {
                 // just one parameter is passed to the constructor
 
                 if (is_int($num)) {
-                    // invalid signature = (int)
-                    return Math_FractionOp::raiseError('Denominator missing.');
+                    // signature = (int)
+                    $den = 1;
                 } else {
                     // try to create a fraction from string
                     // signature = (string)
