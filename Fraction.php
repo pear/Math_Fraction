@@ -149,5 +149,16 @@ class Math_Fraction {
         $d = $this->getDen();
         return "$n/$d";
     }
+
+    /**
+     * String representation of the fraction (PHP5 magic version)
+     *
+     * @return string
+     * @access public
+     */
+    function __toString()
+    {
+        return $this->toString();
+    }
 }
 ?>
