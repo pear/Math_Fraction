@@ -255,7 +255,7 @@ class Math_FractionOp {
      * @return object Math_Fraction
      * @access public
      */
-    function &simplify(&$n)
+    function simplify(&$n)
     {
         if (!Math_FractionOp::isFraction($n)) {
             return Math_FractionOp::raiseError('Argument must be PEAR::Math_Fraction object');
@@ -279,7 +279,7 @@ class Math_FractionOp {
      * @return object Math_Fraction
      * @access public
      */
-    function &reduce(&$n)
+    function reduce(&$n)
     {
         return Math_FractionOp::simplify($n);
     }
